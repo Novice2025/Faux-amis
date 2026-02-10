@@ -1,0 +1,567 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falsos Amigos: Francês 🇫🇷 vs Português 🇧🇷</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- NEXTATION NEON DESIGN SYSTEM --- */
+        :root {
+            --bg-deep: #02030b;
+            --bg-card: rgba(20, 25, 40, 0.8);
+            --neon-cyan: #4ef2ff;
+            --neon-pink: #ff2f92;
+            --neon-green: #4dff9b;
+            --neon-gold: #ffe25f;
+            --text-main: #ffffff;
+            --text-sub: rgba(255, 255, 255, 0.7);
+            --border-glow: rgba(78, 242, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at 50% 0%, #1c1f3b 0%, #050716 60%, #02030b 100%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* HEADER */
+        header { text-align: center; margin-bottom: 30px; animation: fadeIn 1s ease-out; }
+        h1 {
+            font-size: 3rem; font-weight: 800; letter-spacing: -2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--text-main));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(78, 242, 255, 0.4);
+            margin-bottom: 10px;
+        }
+        .subtitle { color: var(--neon-pink); font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* SEARCH */
+        .search-container {
+            width: 100%; max-width: 600px; margin-bottom: 40px; position: relative;
+        }
+        .search-input {
+            width: 100%; padding: 15px 25px; border-radius: 50px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--neon-cyan);
+            color: white; font-size: 1.1rem; outline: none;
+            box-shadow: 0 0 15px rgba(78, 242, 255, 0.1);
+            transition: all 0.3s;
+        }
+        .search-input:focus { box-shadow: 0 0 25px rgba(78, 242, 255, 0.3); background: rgba(255,255,255,0.1); }
+
+        /* GRID */
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px; width: 100%; max-width: 1200px;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; overflow: hidden; position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--neon-cyan);
+        }
+
+        /* CARD SECTIONS */
+        .fr-section {
+            padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(180deg, rgba(78, 242, 255, 0.05), transparent);
+        }
+        .pt-section {
+            padding: 20px; background: rgba(0,0,0,0.2);
+        }
+        .scenario-section {
+            padding: 15px 20px;
+            background: rgba(255, 47, 146, 0.05);
+            border-top: 1px solid rgba(255, 47, 146, 0.2);
+            font-size: 0.9rem;
+        }
+
+        /* TYPOGRAPHY */
+        .lang-label {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-sub); margin-bottom: 5px; display: flex; justify-content: space-between;
+        }
+        .word-main { font-size: 2rem; font-weight: 800; color: var(--neon-cyan); margin-bottom: 5px; }
+        .word-meaning { font-size: 1.1rem; color: white; font-style: italic; }
+
+        .pt-word { font-size: 1.4rem; font-weight: 700; color: var(--neon-pink); margin-bottom: 5px; }
+        .pt-context { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 10px; }
+        .fr-translation { 
+            display: block; font-size: 0.9rem; color: var(--neon-green); 
+            background: rgba(77, 255, 155, 0.1); padding: 5px 10px; 
+            border-radius: 8px; width: fit-content;
+        }
+
+        /* SCENARIO STYLES */
+        .scenario-title {
+            color: var(--neon-gold); font-weight: bold; margin-bottom: 8px;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .dialogue-line { margin-bottom: 4px; line-height: 1.4; }
+        .speaker { font-weight: bold; margin-right: 5px; }
+        .speaker.br { color: #4dff9b; } /* Green for BR */
+        .speaker.fr { color: #4ef2ff; } /* Blue for FR */
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Falsos Amigos</h1>
+        <p class="subtitle">Francês 🇫🇷 vs Português 🇧🇷</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" class="search-input" id="search" placeholder="Buscar palavra (ex: Abonné, Bala, Pote)..." onkeyup="renderCards(this.value)">
+    </div>
+
+    <div class="grid" id="grid">
+        <!-- Cards injected by JS -->
+    </div>
+
+    <script>
+        // DATA SOURCE - COMPLETE LIST FROM PDF
+        const data = [
+            { 
+                fr: "Abonné", fr_m: "Assinante (jornal, netflix)", 
+                pt: "Abonado", pt_m: "Rico / Endinheirado", fr_eq: "Riche / Fortuné",
+                scene: {
+                    br: "Ele é muito abonné, tem três carros!",
+                    fr: "Quoi? Il est abonné à trois magazines de voitures?",
+                    expl: "O brasileiro quis dizer 'rico', mas o francês entendeu 'assinante'."
+                }
+            },
+            { 
+                fr: "Acheter", fr_m: "Comprar", 
+                pt: "Achatar", pt_m: "Amassar / Tornar plano", fr_eq: "Aplatir",
+                scene: {
+                    br: "Vou ali achatar um pão.",
+                    fr: "Tu vas écraser le pain?! Pourquoi?",
+                    expl: "Confusão sonora. 'Acheter' (comprar) soa como 'Achatar' (esmagar)."
+                }
+            },
+            { 
+                fr: "Aimant", fr_m: "Ímã (magnético)", 
+                pt: "Amante", pt_m: "Parceiro amoroso", fr_eq: "Amant",
+                scene: {
+                    br: "Colei um aimant na geladeira.",
+                    fr: "Tu as collé ton amant sur le frigo?!",
+                    expl: "O francês ficou chocado achando que você colou seu amante na geladeira."
+                }
+            },
+            { 
+                fr: "Amasser", fr_m: "Juntar / Acumular (dinheiro)", 
+                pt: "Amassar", pt_m: "Amarrotar", fr_eq: "Chiffonner / Écraser",
+                scene: {
+                    br: "Ele gosta de amasser dinheiro.",
+                    fr: "Il aime chiffonner les billets? Quel gaspillage!",
+                    expl: "O francês acha que ele gosta de amassar as notas de dinheiro."
+                }
+            },
+            { 
+                fr: "Attirer", fr_m: "Atrair", 
+                pt: "Atirar", pt_m: "Disparar arma", fr_eq: "Tirer",
+                scene: {
+                    br: "Cuidado, ele vai attirer!",
+                    fr: "Il va séduire qui?",
+                    expl: "Você alertou sobre um tiro, mas o francês entendeu que ele vai seduzir alguém."
+                }
+            },
+            { 
+                fr: "Attendre", fr_m: "Esperar", 
+                pt: "Atender", pt_m: "Responder (telefone/porta)", fr_eq: "Répondre / Accueillir",
+                scene: {
+                    br: "Vou attendre o telefone.",
+                    fr: "Tu vas regarder le téléphone sonner sans rien faire?",
+                    expl: "'Attendre' é esperar. Se você 'espera' o telefone, você não atende."
+                }
+            },
+            { 
+                fr: "Baffe", fr_m: "Bofetada / Tapa", 
+                pt: "Bafo", pt_m: "Mau hálito", fr_eq: "Mauvaise haleine",
+                scene: {
+                    br: "Ele tem uma baffe horrível.",
+                    fr: "Il a une gifle horrible? Il frappe mal?",
+                    expl: "Você reclamou do hálito, o francês entendeu que ele dá tapas ruins."
+                }
+            },
+            { 
+                fr: "Balle", fr_m: "Bala (projétil) / Bola pequena", 
+                pt: "Bala", pt_m: "Doce", fr_eq: "Bonbon",
+                scene: {
+                    br: "Criança adora chupar balle.",
+                    fr: "Quoi?! C'est dangereux d'avaler des projectiles!",
+                    expl: "O francês acha perigoso crianças chuparem munição de arma."
+                }
+            },
+            { 
+                fr: "Baratte", fr_m: "Batedeira de manteiga", 
+                pt: "Barata", pt_m: "Inseto", fr_eq: "Cafard",
+                scene: {
+                    br: "Tem uma baratte na cozinha!",
+                    fr: "Super, on va faire du beurre maison!",
+                    expl: "Você viu um inseto, o francês achou que era um utensílio de cozinha."
+                }
+            },
+            { 
+                fr: "Bâton", fr_m: "Bastão / Pau", 
+                pt: "Batom", pt_m: "Maquiagem", fr_eq: "Rouge à lèvres",
+                scene: {
+                    br: "Ela passou bâton nos lábios.",
+                    fr: "Aïe! Elle s'est frappée avec un bâton?",
+                    expl: "Parece que ela bateu um pedaço de pau na boca."
+                }
+            },
+            { 
+                fr: "Blouse", fr_m: "Avental / Jaleco", 
+                pt: "Blusa", pt_m: "Camisa feminina", fr_eq: "Chemisier",
+                scene: {
+                    br: "Que blouse linda você comprou para a festa.",
+                    fr: "Pour la fête? Je ressemble à une infirmière!",
+                    expl: "Blouse é uniforme de trabalho/jaleco, não roupa de sair."
+                }
+            },
+            { 
+                fr: "Bobonne", fr_m: "Minha velha (esposa)", 
+                pt: "Bobona", pt_m: "Tonta / Ingênua", fr_eq: "Niaise",
+                scene: {
+                    br: "Minha esposa é uma bobonne.",
+                    fr: "C'est mignon! Tu l'aimes beaucoup.",
+                    expl: "Você quis ofender (bobona), mas usou um termo carinhoso (minha velha)."
+                }
+            },
+            { 
+                fr: "Bourreau", fr_m: "Carrasco", 
+                pt: "Burro", pt_m: "Estúpido / Animal", fr_eq: "Idiot / Âne",
+                scene: {
+                    br: "Aquele aluno é muito bourreau.",
+                    fr: "Il torture les autres élèves?!",
+                    expl: "Você chamou de burro, o francês entendeu 'torturador'."
+                }
+            },
+            { 
+                fr: "Carafe", fr_m: "Jarra d'água", 
+                pt: "Garrafa", pt_m: "Recipiente fechado", fr_eq: "Bouteille",
+                scene: {
+                    br: "Comprei uma carafe de vinho.",
+                    fr: "Le vin est déjà ouvert? C'est du vin de table?",
+                    expl: "Carafe é para água ou vinho aberto. Garrafa fechada é 'Bouteille'."
+                }
+            },
+            { 
+                fr: "Chat", fr_m: "Gato", 
+                pt: "Chá", pt_m: "Bebida", fr_eq: "Thé",
+                scene: {
+                    br: "Vou beber um chat quente.",
+                    fr: "Tu vas boire le chat?! Pauvre bête!",
+                    expl: "O francês acha que você vai beber o gato."
+                }
+            },
+            { 
+                fr: "Cigare", fr_m: "Charuto", 
+                pt: "Cigarra", pt_m: "Inseto cantor", fr_eq: "Cigale",
+                scene: {
+                    br: "O cigare cantou o verão todo.",
+                    fr: "Le cigare chante maintenant?",
+                    expl: "Charutos não cantam."
+                }
+            },
+            { 
+                fr: "Coco", fr_m: "Coco (fruta) / Querido", 
+                pt: "Cocô", pt_m: "Fezes", fr_eq: "Caca",
+                scene: {
+                    br: "Olha esse coco no chão!",
+                    fr: "C'est juste une noix de coco, pourquoi tu dégoûtes?",
+                    expl: "Cuidado com a pronúncia! Coco (fruta) vs Caca (sujeira)."
+                }
+            },
+            { 
+                fr: "Costume", fr_m: "Terno", 
+                pt: "Costume", pt_m: "Hábito", fr_eq: "Coutume",
+                scene: {
+                    br: "É meu costume usar isso.",
+                    fr: "C'est ton costume? Il te va bien.",
+                    expl: "Você falou de hábito, ele entendeu que é sua roupa formal."
+                }
+            },
+            { 
+                fr: "Coupe", fr_m: "Taça (troféu/champanhe)", 
+                pt: "Copo", pt_m: "Copo comum", fr_eq: "Verre",
+                scene: {
+                    br: "Me dá uma coupe d'água.",
+                    fr: "De l'eau dans une coupe de champagne? Chic!",
+                    expl: "Água se bebe em 'verre'. Coupe é para ocasiões especiais."
+                }
+            },
+            { 
+                fr: "Défendre", fr_m: "Proibir / Defender", 
+                pt: "Defender", pt_m: "Proteger", fr_eq: "Protéger",
+                scene: {
+                    br: "Vou défendre meu amigo.",
+                    fr: "Tu vas lui interdire quoi?",
+                    expl: "Défendre pode significar 'Proibir'. Cuidado com o contexto."
+                }
+            },
+            { 
+                fr: "Embrasser", fr_m: "Beijar / Abraçar", 
+                pt: "Abraçar", pt_m: "Só abraço", fr_eq: "Serrer dans ses bras",
+                scene: {
+                    br: "Vou embrasser meu chefe.",
+                    fr: "Tu vas l'embrasser sur la bouche?!",
+                    expl: "Embrasser geralmente implica beijo no rosto ou boca. Abraço é 'Câlin'."
+                }
+            },
+            { 
+                fr: "Entendre", fr_m: "Ouvir", 
+                pt: "Entender", pt_m: "Compreender", fr_eq: "Comprendre",
+                scene: {
+                    br: "Não estou entendendo nada.",
+                    fr: "Tu es sourd? (Je n'entends rien)",
+                    expl: "Se você diz 'Je n'entends pas', parece que você não está ouvindo o som."
+                }
+            },
+            { 
+                fr: "Gâteau", fr_m: "Bolo", 
+                pt: "Gato", pt_m: "Animal", fr_eq: "Chat",
+                scene: {
+                    br: "O gâteau subiu no telhado.",
+                    fr: "Le gâteau a des jambes?!",
+                    expl: "Bolos não sobem em telhados."
+                }
+            },
+            { 
+                fr: "Légende", fr_m: "Legenda (foto/mapa)", 
+                pt: "Legenda (filme)", pt_m: "Texto do filme", fr_eq: "Sous-titre",
+                scene: {
+                    br: "O filme tem légende?",
+                    fr: "C'est un film ou une carte géographique?",
+                    expl: "Filmes têm 'sous-titres'. Mapas têm 'légendes'."
+                }
+            },
+            { 
+                fr: "Midi", fr_m: "Meio-dia", 
+                pt: "Medi", pt_m: "Do verbo medir", fr_eq: "J'ai mesuré",
+                scene: {
+                    br: "Eu midi a sala.",
+                    fr: "Tu es le midi de la salle? Ça ne veut rien dire.",
+                    expl: "Você quis dizer que mediu, mas disse 'Eu meio-dia a sala'."
+                }
+            },
+            { 
+                fr: "Pote", fr_m: "Amigo (gíria)", 
+                pt: "Pote", pt_m: "Recipiente", fr_eq: "Pot",
+                scene: {
+                    br: "Vou quebrar esse pote.",
+                    fr: "Tu vas frapper ton ami?!",
+                    expl: "Pote em francês é 'amigão'. Recipiente é 'Pot'."
+                }
+            },
+            { 
+                fr: "Preservatif", fr_m: "Camisinha", 
+                pt: "Preservativo", pt_m: "Conservante (comida)", fr_eq: "Conservateur",
+                scene: {
+                    br: "Esse suco tem muito preservatif.",
+                    fr: "QUOI?! Ne bois pas ça!",
+                    expl: "Clássico! Você disse que o suco tem camisinhas dentro."
+                }
+            },
+            { 
+                fr: "Rousse", fr_m: "Ruiva", 
+                pt: "Russo", pt_m: "Da Rússia", fr_eq: "Russe",
+                scene: {
+                    br: "Ele é rousse.",
+                    fr: "Il est une femme rousse?",
+                    expl: "Rousse é feminino de ruivo. Russo (nacionalidade) é 'Russe'."
+                }
+            },
+            { 
+                fr: "Sale", fr_m: "Sujo", 
+                pt: "Sala", pt_m: "Cômodo", fr_eq: "Salle / Salon",
+                scene: {
+                    br: "A sale está cheia.",
+                    fr: "La sale? La fille sale?",
+                    expl: "Sale (sujo) vs Salle (sala). A pronúncia é parecida, mas o sentido oposto."
+                }
+            },
+            { 
+                fr: "Sol", fr_m: "Chão", 
+                pt: "Sol", pt_m: "Astro rei", fr_eq: "Soleil",
+                scene: {
+                    br: "Olha como o sol está quente.",
+                    fr: "Le sol est chaud? Tu marches pieds nus?",
+                    expl: "Você falou do sol (céu), ele entendeu o chão (piso)."
+                }
+            },
+            { 
+                fr: "Tapette", fr_m: "Mata-moscas / (Pej.) Gay", 
+                pt: "Tapete", pt_m: "No chão", fr_eq: "Tapis",
+                scene: {
+                    br: "Comprei uma tapette persa.",
+                    fr: "Une tapette persane? C'est bizarre...",
+                    expl: "Tapete é 'Tapis'. Tapette é mata-moscas ou ofensa."
+                }
+            },
+            { 
+                fr: "Veste", fr_m: "Jaqueta / Paletó", 
+                pt: "Veste", pt_m: "Do verbo vestir", fr_eq: "Habille",
+                scene: {
+                    br: "Ela veste bem.",
+                    fr: "Elle est une veste? (Ela é uma jaqueta?)",
+                    expl: "Confusão entre substantivo e verbo."
+                }
+            },
+            { 
+                fr: "Violon", fr_m: "Violino", 
+                pt: "Violão", pt_m: "Guitarra clássica", fr_eq: "Guitare",
+                scene: {
+                    br: "Toco violon na praia.",
+                    fr: "Du violon à la plage? C'est risqué pour l'instrument!",
+                    expl: "Violão de praia é 'Guitare'. Violino é de orquestra."
+                }
+            }
+        ];
+
+        // ADDING REMAINING ITEMS WITHOUT SCENARIOS (TO ENSURE FULL LIST)
+        const extraItems = [
+            { fr: "Billion", fr_m: "Trilhão", pt: "Bilhão", pt_m: "Mil milhões", fr_eq: "Milliard" },
+            { fr: "Bonne", fr_m: "Empregada / Boa", pt: "Boa", pt_m: "Adjetivo", fr_eq: "Bonne" },
+            { fr: "Cannelle", fr_m: "Canela (tempero)", pt: "Canela (perna)", pt_m: "Osso da perna", fr_eq: "Tibia" },
+            { fr: "Car", fr_m: "Pois / Porque", pt: "Carro", pt_m: "Veículo", fr_eq: "Voiture" },
+            { fr: "Carpette", fr_m: "Tapete pequeno", pt: "Carpete", pt_m: "Revestimento fixo", fr_eq: "Moquette" },
+            { fr: "Carte", fr_m: "Mapa / Cartão", pt: "Carta", pt_m: "Correspondência", fr_eq: "Lettre" },
+            { fr: "Châtier", fr_m: "Castigar", pt: "Chatear", pt_m: "Aborrecer", fr_eq: "Ennuyer" },
+            { fr: "Chaton", fr_m: "Gatinho", pt: "Chatão", pt_m: "Muito chato", fr_eq: "Ennuyeux" },
+            { fr: "Chichi", fr_m: "Frescura", pt: "Xixi", pt_m: "Urina", fr_eq: "Pipi" },
+            { fr: "Cochon", fr_m: "Porco", pt: "Colchão", pt_m: "De dormir", fr_eq: "Matelas" },
+            { fr: "Course", fr_m: "Corrida / Compras", pt: "Curso", pt_m: "Aula", fr_eq: "Cours" },
+            { fr: "Couvert", fr_m: "Talheres", pt: "Couvert", pt_m: "Taxa/Entrada", fr_eq: "Hors d'oeuvre" },
+            { fr: "Cuisinière", fr_m: "Fogão / Cozinheira", pt: "Cozinheira", pt_m: "Pessoa", fr_eq: "Cuisinière" },
+            { fr: "Degré", fr_m: "Grau", pt: "Degrau", pt_m: "Escada", fr_eq: "Marche" },
+            { fr: "Désastreux", fr_m: "Catastrófico", pt: "Desastrado", pt_m: "Estabanado", fr_eq: "Maladroit" },
+            { fr: "Dépense", fr_m: "Despesa", pt: "Despensa", pt_m: "Armazém", fr_eq: "Cellier" },
+            { fr: "Envier", fr_m: "Invejar", pt: "Enviar", pt_m: "Mandar", fr_eq: "Envoyer" },
+            { fr: "Étage", fr_m: "Andar", pt: "Estágio", pt_m: "Fase/Trabalho", fr_eq: "Stage" },
+            { fr: "Femme", fr_m: "Mulher", pt: "Fêmea", pt_m: "Animal", fr_eq: "Femelle" },
+            { fr: "Fille", fr_m: "Menina / Filha", pt: "Filha", pt_m: "Parente", fr_eq: "Fille" },
+            { fr: "Garce", fr_m: "Piranha (xigamento)", pt: "Garça", pt_m: "Ave", fr_eq: "Héron" },
+            { fr: "Garçonnet", fr_m: "Menininho", pt: "Garçonete", pt_m: "Servidora", fr_eq: "Serveuse" },
+            { fr: "Gâter", fr_m: "Mimar / Estragar", pt: "Gastar", pt_m: "Despender", fr_eq: "Dépenser" },
+            { fr: "Goûter", fr_m: "Provar / Lanche", pt: "Gostar", pt_m: "Amar", fr_eq: "Aimer" },
+            { fr: "Grosse", fr_m: "Gorda / Grande", pt: "Grossa", pt_m: "Mal-educada", fr_eq: "Grossière" },
+            { fr: "Hasard", fr_m: "Acaso", pt: "Azar", pt_m: "Má sorte", fr_eq: "Malchance" },
+            { fr: "Jus", fr_m: "Suco", pt: "Jus", pt_m: "Direito (fazer jus)", fr_eq: "Droit" },
+            { fr: "Lettre", fr_m: "Carta", pt: "Letra", pt_m: "De música", fr_eq: "Parole" },
+            { fr: "Livre", fr_m: "Livro", pt: "Livre", pt_m: "Liberdade", fr_eq: "Libre" },
+            { fr: "Lunettes", fr_m: "Óculos", pt: "Luneta", pt_m: "Telescópio", fr_eq: "Lunette" },
+            { fr: "Mais", fr_m: "Mas", pt: "Mais", pt_m: "Adição", fr_eq: "Plus" },
+            { fr: "Maïs", fr_m: "Milho", pt: "Mais", pt_m: "Adição", fr_eq: "Plus" },
+            { fr: "Mangue", fr_m: "Manga (fruta)", pt: "Manga", pt_m: "Roupa", fr_eq: "Manche" },
+            { fr: "Manche", fr_m: "Manga (roupa) / Cabo", pt: "Mancha", pt_m: "Sujeira", fr_eq: "Tache" },
+            { fr: "Marche", fr_m: "Degrau / Marcha", pt: "Marcha", pt_m: "Movimento", fr_eq: "Marche" },
+            { fr: "Menteur", fr_m: "Mentiroso", pt: "Mentor", pt_m: "Guia", fr_eq: "Guide" },
+            { fr: "Milliard", fr_m: "Bilhão", pt: "Milhar", pt_m: "Mil", fr_eq: "Millier" },
+            { fr: "Mondaine", fr_m: "Mundana (socialite)", pt: "Mundano", pt_m: "Vulgar", fr_eq: "Vulgaire" },
+            { fr: "Morne", fr_m: "Melancólico", pt: "Morno", pt_m: "Temperatura", fr_eq: "Tiède" },
+            { fr: "Natte", fr_m: "Trança / Esteira", pt: "Nata", pt_m: "Do leite", fr_eq: "Crème" },
+            { fr: "Nom", fr_m: "Sobrenome / Nome", pt: "Nome", pt_m: "Prenome", fr_eq: "Prénom" },
+            { fr: "Ombre", fr_m: "Sombra", pt: "Ombro", pt_m: "Corpo", fr_eq: "Épaule" },
+            { fr: "Outil", fr_m: "Ferramenta", pt: "Útil", pt_m: "Adjetivo", fr_eq: "Utile" },
+            { fr: "Pansement", fr_m: "Curativo", pt: "Pensamento", pt_m: "Ideia", fr_eq: "Pensée" },
+            { fr: "Parents", fr_m: "Pais", pt: "Parentes", pt_m: "Familiares", fr_eq: "Proches" },
+            { fr: "Peine", fr_m: "Pena (tristeza)", pt: "Pena", pt_m: "Pluma", fr_eq: "Plume" },
+            { fr: "Peinture", fr_m: "Pintura / Tinta", pt: "Pintura", pt_m: "Quadro", fr_eq: "Tableau" },
+            { fr: "Pelle", fr_m: "Pá", pt: "Pele", pt_m: "Derme", fr_eq: "Peau" },
+            { fr: "Penne", fr_m: "Pena (ave)", pt: "Pena", pt_m: "Dó", fr_eq: "Peine" },
+            { fr: "Personne", fr_m: "Ninguém / Pessoa", pt: "Pessoa", pt_m: "Indivíduo", fr_eq: "Personne" },
+            { fr: "Piment", fr_m: "Pimenta", pt: "Pimenta", pt_m: "Do reino", fr_eq: "Poivre" },
+            { fr: "Pipi", fr_m: "Xixi", pt: "Pipi", pt_m: "Pênis infantil", fr_eq: "Zizi" },
+            { fr: "Place", fr_m: "Lugar / Praça", pt: "Praça", pt_m: "Largo", fr_eq: "Place" },
+            { fr: "Poste", fr_m: "Correio / Cargo", pt: "Poste", pt_m: "De luz", fr_eq: "Poteau" },
+            { fr: "Quartier", fr_m: "Bairro", pt: "Quarteirão", pt_m: "Quadra", fr_eq: "Pâté de maisons" },
+            { fr: "Recette", fr_m: "Receita (Culinária)", pt: "Receita", pt_m: "Médica", fr_eq: "Ordonnance" },
+            { fr: "Scénario", fr_m: "Roteiro", pt: "Cenário", pt_m: "Decoração", fr_eq: "Décor" },
+            { fr: "Sombre", fr_m: "Escuro", pt: "Sombra", pt_m: "Silhueta", fr_eq: "Ombre" },
+            { fr: "Sous-titre", fr_m: "Legenda", pt: "Subtítulo", pt_m: "Título 2", fr_eq: "Sous-titre" },
+            { fr: "Soutien", fr_m: "Apoio", pt: "Sutiã", pt_m: "Lingerie", fr_eq: "Soutien-gorge" },
+            { fr: "Subir", fr_m: "Sofrer", pt: "Subir", pt_m: "Elevar", fr_eq: "Monter" },
+            { fr: "Trotte", fr_m: "Caminhada", pt: "Trote", pt_m: "Brincadeira", fr_eq: "Bizutage" },
+            { fr: "User", fr_m: "Desgastar", pt: "Usar", pt_m: "Utilizar", fr_eq: "Utiliser" },
+            { fr: "Vers", fr_m: "Em direção a", pt: "Verso", pt_m: "Lado oposto", fr_eq: "Envers" },
+            { fr: "Villa", fr_m: "Vivenda", pt: "Vila", pt_m: "Aldeia", fr_eq: "Village" },
+            { fr: "Violine", fr_m: "Roxo", pt: "Violino", pt_m: "Instrumento", fr_eq: "Violon" }
+        ];
+
+        // MERGE LISTS
+        const fullData = [...data, ...extraItems].sort((a, b) => a.fr.localeCompare(b.fr));
+
+        function renderCards(filter = "") {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = "";
+
+            const search = filter.toLowerCase();
+            const filtered = fullData.filter(item => 
+                item.fr.toLowerCase().includes(search) || 
+                item.pt.toLowerCase().includes(search)
+            );
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                let scenarioHTML = '';
+                if (item.scene) {
+                    scenarioHTML = `
+                        <div class="scenario-section">
+                            <div class="scenario-title">🎭 Cena do Cotidiano</div>
+                            <div class="dialogue-line"><span class="speaker br">🇧🇷 BR:</span> "${item.scene.br}"</div>
+                            <div class="dialogue-line"><span class="speaker fr">🇫🇷 FR:</span> "${item.scene.fr}"</div>
+                            <div style="margin-top:8px; font-style:italic; color:var(--text-sub); font-size:0.85rem">💡 ${item.scene.expl}</div>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="fr-section">
+                        <div class="lang-label">
+                            <span>🇫🇷 Francês</span>
+                        </div>
+                        <div class="word-main">${item.fr}</div>
+                        <div class="word-meaning">Significa: "${item.fr_m}"</div>
+                    </div>
+
+                    <div class="pt-section">
+                        <div class="lang-label">⚠️ Falso Amigo (Português)</div>
+                        <div class="pt-word">${item.pt}</div>
+                        <div class="pt-context">Significa: ${item.pt_m}</div>
+                        <span class="fr-translation">Em francês seria: <b>${item.fr_eq}</b></span>
+                    </div>
+                    ${scenarioHTML}
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Init
+        renderCards();
+
+    </script>
+</body>
+</html>
